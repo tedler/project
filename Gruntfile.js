@@ -12,10 +12,8 @@ module.exports = function(grunt) {
               compress: true,  //minifying the result
             },
             files: {
-              //compiling frontend.less into frontend.css
-              "./public/assets/stylesheets/frontend.css":"./app/assets/stylesheets/frontend.less",
-              //compiling backend.less into backend.css
-              "./public/assets/stylesheets/backend.css":"./app/assets/stylesheets/backend.less"
+              //compiling style.less into style.css
+              "./public/css/style.css":"./public/assets/less/style.less"
             }
         }
     },
@@ -28,17 +26,9 @@ module.exports = function(grunt) {
         src: [
           './bower_components/jquery/jquery.js',
           './bower_components/bootstrap/dist/js/bootstrap.js',
-          './app/assets/javascript/frontend.js'
+          './public/assets/js/script.js'
         ],
-        dest: './public/assets/javascript/frontend.js',
-      },
-      js_backend: {
-        src: [
-          './bower_components/jquery/jquery.js',
-          './bower_components/bootstrap/dist/js/bootstrap.js',
-          './app/assets/javascript/backend.js'
-        ],
-        dest: './public/assets/javascript/backend.js',
+        dest: './public/js/script.js',
       },
     },
     
@@ -48,12 +38,7 @@ module.exports = function(grunt) {
       },
       frontend: {
         files: {
-          './public/assets/javascript/frontend.js': './public/assets/javascript/frontend.js',
-        }
-      },
-      backend: {
-        files: {
-          './public/assets/javascript/backend.js': './public/assets/javascript/backend.js',
+          './public/js/script.js': './public/js/script.js',
         }
       },
     },
@@ -64,33 +49,27 @@ module.exports = function(grunt) {
             //watched files
             './bower_components/jquery/jquery.js',
             './bower_components/bootstrap/dist/js/bootstrap.js',
-            './app/assets/javascript/frontend.js'
+            './public/assets/js/script.js'
             ],   
           tasks: ['concat:js_frontend','uglify:frontend'],     //tasks to run
           options: {
             livereload: true                        //reloads the browser
           }
         },
-        js_backend: {
-          files: [
-            //watched files
-            './bower_components/jquery/jquery.js',
-            './bower_components/bootstrap/dist/js/bootstrap.js',
-            './app/assets/javascript/backend.js'
-          ],   
-          tasks: ['concat:js_backend','uglify:backend'],     //tasks to run
-          options: {
-            livereload: true                        //reloads the browser
-          }
-        },
         
         less: {
-          files: ['./app/assets/stylesheets/*.less'],  //watched files
+          files: ['./public/assets/less/*.less'],  //watched files
           tasks: ['less'],                          //tasks to run
           options: {
             livereload: true                        //reloads the browser
           }
         },
+
+       livereload: {
+          options: { livereload: true },
+          files: ['./public/**/*.html'],
+        },
+
         
       }
     });
@@ -100,6 +79,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-livereload');
 
   // Task definition
   grunt.registerTask('default', ['watch']);
