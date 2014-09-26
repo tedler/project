@@ -1,9 +1,11 @@
 module.exports = function(grunt) {
 
   //Initializing the configuration object
+  
     grunt.initConfig({
 
       // Task configuration
+    
     less: {
         development: {
             options: {
@@ -17,6 +19,7 @@ module.exports = function(grunt) {
             }
         }
     },
+    
     concat: {
       options: {
         separator: ';',
@@ -38,6 +41,7 @@ module.exports = function(grunt) {
         dest: './public/assets/javascript/backend.js',
       },
     },
+    
     uglify: {
       options: {
         mangle: false  // Use if you want the names of your functions and variables unchanged
@@ -53,12 +57,7 @@ module.exports = function(grunt) {
         }
       },
     },
-    phpunit: {
-        classes: {
-        },
-        options: {
-        }
-    },
+    
     watch: {
         js_frontend: {
           files: [
@@ -84,6 +83,7 @@ module.exports = function(grunt) {
             livereload: true                        //reloads the browser
           }
         },
+        
         less: {
           files: ['./app/assets/stylesheets/*.less'],  //watched files
           tasks: ['less'],                          //tasks to run
@@ -91,10 +91,7 @@ module.exports = function(grunt) {
             livereload: true                        //reloads the browser
           }
         },
-        tests: {
-          files: ['app/controllers/*.php','app/models/*.php'],  //the task will run only when you save files in this location
-          tasks: ['phpunit']
-        }
+        
       }
     });
 
@@ -103,7 +100,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-phpunit');
 
   // Task definition
   grunt.registerTask('default', ['watch']);
