@@ -24,8 +24,9 @@ module.exports = function(grunt) {
       },
       js_frontend: {
         src: [
-          './bower_components/jquery/jquery.js',
+          './bower_components/jquery/dist/jquery.js',
           './bower_components/bootstrap/dist/js/bootstrap.js',
+          './bower_components/holder/holder.js',
           './public/assets/js/script.js'
         ],
         dest: './public/js/script.js',
@@ -47,8 +48,6 @@ module.exports = function(grunt) {
         js_frontend: {
           files: [
             //watched files
-            './bower_components/jquery/jquery.js',
-            './bower_components/bootstrap/dist/js/bootstrap.js',
             './public/assets/js/script.js'
             ],   
           tasks: ['concat:js_frontend','uglify:frontend'],     //tasks to run
@@ -67,7 +66,7 @@ module.exports = function(grunt) {
 
        livereload: {
           options: { livereload: true },
-          files: ['./public/**/*.html'],
+          files: ['./public/**/*.*'],
         },
 
         
