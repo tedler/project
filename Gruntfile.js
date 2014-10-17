@@ -13,7 +13,7 @@ module.exports = function(grunt) {
             },
             files: {
               //compiling style.less into style.css
-              "./public/css/style.css":"./assets/less/style.less"
+              "public/css/style.css":"assets/less/style.less"
             }
         }
     },
@@ -22,16 +22,16 @@ module.exports = function(grunt) {
         dynamic: {                         
           files: [{
             expand: true,                  
-            cwd: './assets/images/',                   
+            cwd: 'assets/images/',                   
             src: ['**/*.{png,jpg,gif}'],   
-            dest: './public/images/'                 
+            dest: 'public/images/'                 
           }]
         }
       },
     
     jshint: {
         dev: {        
-            src: ['./assets/js/script.js']
+            src: ['assets/js/script.js']
         }
     },
 
@@ -41,12 +41,12 @@ module.exports = function(grunt) {
       },
       js_frontend: {
         src: [
-          './bower_components/jquery/dist/jquery.js',
-          './bower_components/bootstrap/dist/js/bootstrap.js',
-          './bower_components/holder/holder.js',
-          './assets/js/script.js'
+          'bower_components/jquery/dist/jquery.js',
+          'bower_components/bootstrap/dist/js/bootstrap.js',
+          'bower_components/holder/holder.js',
+          'assets/js/script.js'
         ],
-        dest: './public/js/script.js',
+        dest: 'public/js/script.js',
       },
     },
     
@@ -56,14 +56,14 @@ module.exports = function(grunt) {
       },
       frontend: {
         files: {
-          './public/js/script.js': './public/js/script.js',
+          'public/js/script.js': 'public/js/script.js',
         }
       },
     },
     
     watch: {
         js_frontend: {
-          files: ['./assets/js/script.js'],   
+          files: ['assets/js/script.js'],   
           tasks: ['jshint','concat:js_frontend','uglify:frontend'],     //tasks to run
           options: {
             livereload: true                        //reloads the browser
@@ -71,12 +71,12 @@ module.exports = function(grunt) {
         },
 
         imagemin: {
-          files: ['./assets/images/**/*.{png,jpg,gif}'],
+          files: ['assets/images/**/*.{png,jpg,gif}'],
           tasks: ['imagemin']
         },
         
         less: {
-          files: ['./assets/less/*.less'],  //watched files
+          files: ['assets/less/*.less'],  //watched files
           tasks: ['less'],                          //tasks to run
           options: {
             livereload: true                        //reloads the browser
@@ -84,7 +84,7 @@ module.exports = function(grunt) {
         },
 
        livereload: {
-          files: ['./public/**/*.*'],
+          files: ['public/**/*.*'],
           options: { livereload: true }
         },
 
@@ -102,6 +102,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Task definition
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['watch','imagemin']);
 
 };
